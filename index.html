@@ -1,0 +1,1104 @@
+
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.userEventHandler=this.triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){document.hidden?e.triggerListener():(this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventHandler,{passive:!0}))),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler))}_removeUserInteractionListener(){this.triggerEvents.forEach((e=>window.removeEventListener(e,this.userEventHandler,{passive:!0}))),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"onclick","rocket-onclick")}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick")}_onTouchEnd(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach((e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))}))}_renameDOMAttribute(e,t,n){e.hasAttribute(t)&&(event.target.setAttribute(n,event.target.getAttribute(t)),event.target.removeAttribute(t))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._replayClicks()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type"),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){let n=e[t];Object.defineProperty(e,t,{get:()=>n||function(){},set(i){e["rocket"+t]=n=i}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,i=document.createRange(),r=n.parentElement;let o=e.get(n);void 0===o&&(o=n.nextSibling,e.set(n,o));const s=document.createDocumentFragment();i.setStart(s,0),s.appendChild(i.createContextualFragment(t)),r.insertBefore(s,o)}}async _requestAnimFrame(){return document.hidden?new Promise((e=>setTimeout(e))):new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+	
+		<title>macarraogourmet &#8211; O Mundo Digital</title><style id="rocket-critical-css">:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}html{line-height:1.15;-webkit-text-size-adjust:100%}*,:after,:before{-webkit-box-sizing:border-box;box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#333;background-color:#fff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}h2,h6{margin-top:.5rem;margin-bottom:1rem;font-family:inherit;font-weight:500;line-height:1.2;color:inherit}h2{font-size:2rem}h6{font-size:1rem}img{border-style:none;height:auto;max-width:100%}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}.site-navigation{grid-area:nav-menu;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}.elementor-screen-only{position:absolute;top:-10000em;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0}.elementor{-webkit-hyphens:manual;hyphens:manual}.elementor *,.elementor :after,.elementor :before{box-sizing:border-box}.elementor img{height:auto;max-width:100%;border:none;border-radius:0;box-shadow:none}.elementor-element{--flex-direction:initial;--flex-wrap:initial;--justify-content:initial;--align-items:initial;--align-content:initial;--gap:initial;--flex-basis:initial;--flex-grow:initial;--flex-shrink:initial;--order:initial;--align-self:initial;flex-basis:var(--flex-basis);flex-grow:var(--flex-grow);flex-shrink:var(--flex-shrink);order:var(--order);align-self:var(--align-self)}:root{--page-title-display:block}.elementor-widget{position:relative}.elementor-widget:not(:last-child){margin-bottom:20px}@media (min-width:1025px){#elementor-device-mode:after{content:"desktop"}}@media (min-width:-1px){#elementor-device-mode:after{content:"widescreen"}}@media (max-width:-1px){#elementor-device-mode:after{content:"laptop";content:"tablet_extra"}}@media (max-width:1024px){#elementor-device-mode:after{content:"tablet"}}@media (max-width:-1px){#elementor-device-mode:after{content:"mobile_extra"}}@media (max-width:767px){#elementor-device-mode:after{content:"mobile"}}.e-con{--border-radius:0;--display:flex;--flex-direction:column;--flex-basis:auto;--flex-grow:0;--flex-shrink:1;--container-widget-width:100%;--container-widget-height:initial;--container-widget-flex-grow:0;--container-widget-align-self:initial;--content-width:Min(100%,var(--container-max-width,1140px));--width:100%;--min-height:initial;--height:auto;--text-align:initial;--margin-top:0;--margin-right:0;--margin-bottom:0;--margin-left:0;--padding-top:var(--container-default-padding-top,10px);--padding-right:var(--container-default-padding-right,10px);--padding-bottom:var(--container-default-padding-bottom,10px);--padding-left:var(--container-default-padding-left,10px);--position:relative;--z-index:revert;--overflow:visible;--gap:var(--widgets-spacing,20px);--overlay-mix-blend-mode:initial;--overlay-opacity:1;position:var(--position);flex:var(--flex-grow) var(--flex-shrink) var(--flex-basis);width:var(--width);min-width:0;min-height:var(--min-height);height:var(--height);border-radius:var(--border-radius);margin:var(--margin-top) var(--margin-right) var(--margin-bottom) var(--margin-left);padding-left:var(--padding-left);padding-right:var(--padding-right);z-index:var(--z-index);overflow:var(--overflow)}.e-con>.e-con-inner{flex-direction:var(--flex-direction);text-align:var(--text-align);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom)}.e-con,.e-con>.e-con-inner{display:var(--display)}.e-con-boxed{flex-direction:column;text-align:initial;flex-wrap:nowrap;justify-content:normal;align-items:normal;align-content:normal;gap:initial}.e-con>.e-con-inner{flex-wrap:var(--flex-wrap);justify-content:var(--justify-content);align-items:var(--align-items);align-content:var(--align-content);gap:var(--gap);width:100%;max-width:var(--content-width);margin:0 auto;padding-inline:0;height:100%;flex-basis:auto;flex-grow:1;flex-shrink:1;align-self:auto}.e-con .elementor-widget.elementor-widget{margin-bottom:0}.e-con:before{content:var(--background-overlay);display:block;position:absolute;width:100%;height:100%;left:0;top:0;mix-blend-mode:var(--overlay-mix-blend-mode);opacity:var(--overlay-opacity);border-radius:var(--border-radius)}.e-con .elementor-widget{min-width:0}.e-con>.e-con-inner>.elementor-widget>.elementor-widget-container{height:100%}.e-con.e-con>.e-con-inner>.elementor-widget{max-width:100%}@media (max-width:767px){.e-con{--width:100%;--flex-wrap:wrap}}.page-template-elementor_canvas.elementor-page:before{display:none}.elementor-kit-4{--e-global-color-primary:#304DB3;--e-global-color-secondary:#161616;--e-global-color-text:#FFFFFF;--e-global-color-accent:#FFC629;--e-global-typography-primary-font-family:"Montserrat";--e-global-typography-primary-font-weight:600;--e-global-typography-secondary-font-family:"Montserrat";--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Montserrat";--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Montserrat";--e-global-typography-accent-font-weight:500}.e-con{--container-max-width:1140px}.elementor-widget:not(:last-child){margin-bottom:20px}.elementor-element{--widgets-spacing:20px}@media (max-width:1024px){.e-con{--container-max-width:1024px}}@media (max-width:767px){.e-con{--container-max-width:767px}}body,html{overflow-x:hidden!important}.elementor-widget-heading .elementor-heading-title{color:var(--e-global-color-primary);font-family:var(--e-global-typography-primary-font-family),Sans-serif;font-weight:var(--e-global-typography-primary-font-weight)}.elementor-2202 .elementor-element.elementor-element-bcdaae6{--flex-direction:column;--container-widget-width:100%;--container-widget-height:initial;--container-widget-flex-grow:0;--container-widget-align-self:initial}.elementor-2202 .elementor-element.elementor-element-bcdaae6:not(.elementor-motion-effects-element-type-background){background-color:transparent;background-image:linear-gradient(180deg,#B30909 0%,#F00000 100%)}.elementor-2202 .elementor-element.elementor-element-4cdcfc1{text-align:center}.elementor-2202 .elementor-element.elementor-element-4cdcfc1 .elementor-heading-title{color:#FFFFFF;font-family:"Montserrat",Sans-serif;font-weight:600}.elementor-2202 .elementor-element.elementor-element-7bcbaf4{--flex-direction:column;--container-widget-width:100%;--container-widget-height:initial;--container-widget-flex-grow:0;--container-widget-align-self:initial}.elementor-2202 .elementor-element.elementor-element-6e7b20d{text-align:center}.elementor-2202 .elementor-element.elementor-element-6e7b20d .elementor-heading-title{color:#020202;font-family:"Montserrat",Sans-serif;font-weight:600;line-height:47px}.elementor-2202 .elementor-element.elementor-element-e35ab4b{text-align:center}.elementor-2202 .elementor-element.elementor-element-e35ab4b .elementor-heading-title{color:#000000;font-family:"Montserrat",Sans-serif;font-weight:500}.elementor-2202 .elementor-element.elementor-element-c22986a{--flex-direction:column;--container-widget-width:100%;--container-widget-height:initial;--container-widget-flex-grow:0;--container-widget-align-self:initial}@media (max-width:767px){.elementor-2202 .elementor-element.elementor-element-bcdaae6{--content-width:500px;--min-height:15px}.elementor-2202 .elementor-element.elementor-element-4cdcfc1{text-align:center}.elementor-2202 .elementor-element.elementor-element-4cdcfc1 .elementor-heading-title{font-size:12px}.elementor-2202 .elementor-element.elementor-element-6e7b20d .elementor-heading-title{font-size:20px;line-height:1.4em}.elementor-2202 .elementor-element.elementor-element-e35ab4b{text-align:center}.elementor-2202 .elementor-element.elementor-element-c22986a{--min-height:261px}}</style><link rel="preload" href="https://omundodiigital.com/wp-content/cache/min/1/92a56b8fafae2c017dc97af373c0acc9.css" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" media="all" data-minify="1" />
+<meta name='robots' content='max-image-preview:large' />
+
+<link rel="alternate" type="application/rss+xml" title="O Mundo Digital &raquo; Feed" href="https://omundodiigital.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="O Mundo Digital &raquo; Feed de comentários" href="https://omundodiigital.com/comments/feed/" />
+<link id='omgf-preload-0' rel='preload' href='//omundodiigital.com/wp-content/uploads/omgf/google-fonts-1-mod-8aiit/montserrat-normal-latin.woff2' as='font' type='font/woff2' crossorigin />
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	
+
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var back_redirect_back_link = 'https://lucrandofacil.fun/back/';
+history['pushState']({}, '', location['href']);
+history['pushState']({}, '', location['href']);
+window['onpopstate'] = function() {
+setTimeout(function() {
+location['href'] = back_redirect_back_link
+}, 1)
+}</script> </div>
+
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.4' id='jquery-core-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0' id='jquery-migrate-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js?ver=3.13.4' id='font-awesome-4-shim-js' defer></script>
+<link rel="https://api.w.org/" href="https://omundodiigital.com/wp-json/" /><link rel="alternate" type="application/json" href="https://omundodiigital.com/wp-json/wp/v2/pages/2306" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://omundodiigital.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://omundodiigital.com/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 6.2.2" />
+<link rel="canonical" href="https://omundodiigital.com/macarraogourmet/" />
+<link rel='shortlink' href='https://omundodiigital.com/?p=2306' />
+<link rel="alternate" type="application/json+oembed" href="https://omundodiigital.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fomundodiigital.com%2Fmacarraogourmet%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://omundodiigital.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fomundodiigital.com%2Fmacarraogourmet%2F&#038;format=xml" />
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1423088471841972');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1423088471841972&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1423088471841972');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1423088471841972&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1423088471841972');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1423088471841972&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<link rel="preload" href="https://scripts.converteai.net/04a47576-75f2-4177-884a-8b7a76354d0f/players/6452c41daac9bc00093d40dc/player.js" as="script">
+<link rel="preload" href="https://cdn.converteai.net/lib/js/smartplayer/v1/smartplayer.min.js" as="script">
+<link rel="preload" href="https://images.converteai.net/04a47576-75f2-4177-884a-8b7a76354d0f/players/6452c41daac9bc00093d40dc/thumbnail.jpg" as="image">
+<link rel="preload" href="https://cdn.converteai.net/04a47576-75f2-4177-884a-8b7a76354d0f/6452c401b0ab0b00092638dc/playlist.m3u8" as="fetch">
+<link rel="dns-prefetch" href="https://cdn.converteai.net">
+<link rel="dns-prefetch" href="https://scripts.converteai.net">
+<link rel="dns-prefetch" href="https://images.converteai.net">
+<link rel="dns-prefetch" href="https://api.vturb.com.br">
+
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1423088471841972');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1423088471841972&ev=PageView&noscript=1"
+/></noscript>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1423088471841972');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1423088471841972&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1423088471841972');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1423088471841972&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<meta name="generator" content="Elementor 3.13.4; features: e_dom_optimization, e_optimized_assets_loading, e_optimized_css_loading, a11y_improvements, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
+<link rel="icon" href="https://omundodiigital.com/wp-content/uploads/2022/07/cropped-impressao-digital-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://omundodiigital.com/wp-content/uploads/2022/07/cropped-impressao-digital-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://omundodiigital.com/wp-content/uploads/2022/07/cropped-impressao-digital-180x180.png" />
+<meta name="msapplication-TileImage" content="https://omundodiigital.com/wp-content/uploads/2022/07/cropped-impressao-digital-270x270.png" />
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script type="rocketlazyloadscript">
+/*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+(function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
+var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=!1}
+return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
+if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
+setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
+var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",!0);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}
+if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}
+else{w.loadCSS=loadCSS}}(typeof global!=="undefined"?global:this))
+</script>	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" /></head>
+<body class="page-template page-template-elementor_canvas page page-id-2306 wp-custom-logo elementor-default elementor-template-canvas elementor-kit-4 elementor-page elementor-page-2306">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg>		<div data-elementor-type="wp-page" data-elementor-id="2306" class="elementor elementor-2306">
+							<div class="elementor-element elementor-element-a379c9b e-con-boxed e-flex e-con" data-id="a379c9b" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;content_width&quot;:&quot;boxed&quot;}">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-543cb6c elementor-widget elementor-widget-text-editor" data-id="543cb6c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.13.3 - 28-05-2023 */
+.elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap{background-color:#69727d;color:#fff}.elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap{color:#69727d;border:3px solid;background-color:transparent}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap{margin-top:8px}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter{width:1em;height:1em}.elementor-widget-text-editor .elementor-drop-cap{float:left;text-align:center;line-height:1;font-size:50px}.elementor-widget-text-editor .elementor-drop-cap-letter{display:inline-block}</style>				<section class="elementor-section elementor-top-section elementor-element elementor-element-7dbd3ae4 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7dbd3ae4" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_bottom&quot;:&quot;zigzag&quot;}"><div class="elementor-container elementor-column-gap-default"><div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3c48ad59" data-id="3c48ad59" data-element_type="column"><div class="elementor-widget-wrap elementor-element-populated"><div class="elementor-element elementor-element-260e6403 elementor-widget elementor-widget-text-editor" data-id="260e6403" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: center;"><span class="cqiun4t2 khvhiq1o r5qsrrlp i5tg98hk iqx13udk przvwfww qiohso4h gfz4du6o r7fjleex nz2484kf svot0ezm dcnh1tix sxl192xd t3g6t33p"><span class=""><img decoding="async" class="emoji" role="img" draggable="false" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="✅" data-lazy-src="https://s.w.org/images/core/emoji/14.0.0/svg/2705.svg" /><noscript><img decoding="async" class="emoji" role="img" draggable="false" src="https://s.w.org/images/core/emoji/14.0.0/svg/2705.svg" alt="✅" /></noscript><span style="color: #ffffff;"> </span></span></span><span style="color: #ffffff;">Cupom de <strong>desconto</strong> aplicado.</span></p></div></div></div></div></div></section><section class="elementor-section elementor-top-section elementor-element elementor-element-7ca4787b elementor-hidden-tablet elementor-hidden-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7ca4787b" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_bottom&quot;:&quot;mountains&quot;}"></section>						</div>
+				</div>
+					</div>
+				</div>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-67438937 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="67438937" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_top&quot;:&quot;zigzag&quot;,&quot;shape_divider_bottom&quot;:&quot;wave-brush&quot;}">
+							<div class="elementor-background-overlay"></div>
+						<div class="elementor-shape elementor-shape-top" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 5.8" preserveAspectRatio="none">
+  <path class="elementor-shape-fill" d="M5.4.4l5.4 5.3L16.5.4l5.4 5.3L27.5.4 33 5.7 38.6.4l5.5 5.4h.1L49.9.4l5.4 5.3L60.9.4l5.5 5.3L72 .4l5.5 5.3L83.1.4l5.4 5.3L94.1.4l5.5 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.4 5.3L161 .4l5.4 5.3L172 .4l5.5 5.3 5.6-5.3 5.4 5.3 5.7-5.3 5.4 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.5 5.3L261 .4l5.4 5.3L272 .4l5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1l5.7-5.4 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.7-5.3 5.4 5.4h.2l5.6-5.4 5.5 5.3L361 .4l5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1l5.7-5.4 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1l5.6-5.4 5.5 5.3L461 .4l5.5 5.3 5.6-5.3 5.4 5.3 5.7-5.3 5.4 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1L550 .4l5.4 5.3L561 .4l5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.4 5.3 5.7-5.3 5.4 5.3 5.6-5.3 5.5 5.4h.2L650 .4l5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.4h.2L750 .4l5.5 5.3 5.6-5.3 5.4 5.3 5.7-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1l5.7-5.4 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.4h.2L850 .4l5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.4 5.3 5.7-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1l5.7-5.4 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.4 5.3 5.7-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1l5.7-5.4 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1l5.7-5.4 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.7-5.3 5.4 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1l5.6-5.4 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.7-5.3 5.4 5.4h.2l5.6-5.4 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1l5.7-5.4 5.4 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.5 5.4h.1l5.6-5.4 5.5 5.3 5.6-5.3 5.5 5.3 5.6-5.3 5.4 5.3 5.7-5.3 5.4 5.3 5.6-5.3 5.5 5.4V0H-.2v5.8z"/>
+</svg>
+		</div>
+				<div class="elementor-shape elementor-shape-bottom" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
+	<path class="elementor-shape-fill" d="M283.5,9.7c0,0-7.3,4.3-14,4.6c-6.8,0.3-12.6,0-20.9-1.5c-11.3-2-33.1-10.1-44.7-5.7	s-12.1,4.6-18,7.4c-6.6,3.2-20,9.6-36.6,9.3C131.6,23.5,99.5,7.2,86.3,8c-1.4,0.1-6.6,0.8-10.5,2c-3.8,1.2-9.4,3.8-17,4.7	c-3.2,0.4-8.3,1.1-14.2,0.9c-1.5-0.1-6.3-0.4-12-1.6c-5.7-1.2-11-3.1-15.8-3.7C6.5,9.2,0,10.8,0,10.8V0h283.5V9.7z M260.8,11.3	c-0.7-1-2-0.4-4.3-0.4c-2.3,0-6.1-1.2-5.8-1.1c0.3,0.1,3.1,1.5,6,1.9C259.7,12.2,261.4,12.3,260.8,11.3z M242.4,8.6	c0,0-2.4-0.2-5.6-0.9c-3.2-0.8-10.3-2.8-15.1-3.5c-8.2-1.1-15.8,0-15.1,0.1c0.8,0.1,9.6-0.6,17.6,1.1c3.3,0.7,9.3,2.2,12.4,2.7	C239.9,8.7,242.4,8.6,242.4,8.6z M185.2,8.5c1.7-0.7-13.3,4.7-18.5,6.1c-2.1,0.6-6.2,1.6-10,2c-3.9,0.4-8.9,0.4-8.8,0.5	c0,0.2,5.8,0.8,11.2,0c5.4-0.8,5.2-1.1,7.6-1.6C170.5,14.7,183.5,9.2,185.2,8.5z M199.1,6.9c0.2,0-0.8-0.4-4.8,1.1	c-4,1.5-6.7,3.5-6.9,3.7c-0.2,0.1,3.5-1.8,6.6-3C197,7.5,199,6.9,199.1,6.9z M283,6c-0.1,0.1-1.9,1.1-4.8,2.5s-6.9,2.8-6.7,2.7	c0.2,0,3.5-0.6,7.4-2.5C282.8,6.8,283.1,5.9,283,6z M31.3,11.6c0.1-0.2-1.9-0.2-4.5-1.2s-5.4-1.6-7.8-2C15,7.6,7.3,8.5,7.7,8.6	C8,8.7,15.9,8.3,20.2,9.3c2.2,0.5,2.4,0.5,5.7,1.6S31.2,11.9,31.3,11.6z M73,9.2c0.4-0.1,3.5-1.6,8.4-2.6c4.9-1.1,8.9-0.5,8.9-0.8	c0-0.3-1-0.9-6.2-0.3S72.6,9.3,73,9.2z M71.6,6.7C71.8,6.8,75,5.4,77.3,5c2.3-0.3,1.9-0.5,1.9-0.6c0-0.1-1.1-0.2-2.7,0.2	C74.8,5.1,71.4,6.6,71.6,6.7z M93.6,4.4c0.1,0.2,3.5,0.8,5.6,1.8c2.1,1,1.8,0.6,1.9,0.5c0.1-0.1-0.8-0.8-2.4-1.3	C97.1,4.8,93.5,4.2,93.6,4.4z M65.4,11.1c-0.1,0.3,0.3,0.5,1.9-0.2s2.6-1.3,2.2-1.2s-0.9,0.4-2.5,0.8C65.3,10.9,65.5,10.8,65.4,11.1	z M34.5,12.4c-0.2,0,2.1,0.8,3.3,0.9c1.2,0.1,2,0.1,2-0.2c0-0.3-0.1-0.5-1.6-0.4C36.6,12.8,34.7,12.4,34.5,12.4z M152.2,21.1	c-0.1,0.1-2.4-0.3-7.5-0.3c-5,0-13.6-2.4-17.2-3.5c-3.6-1.1,10,3.9,16.5,4.1C150.5,21.6,152.3,21,152.2,21.1z"/>
+	<path class="elementor-shape-fill" d="M269.6,18c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C267.7,18.8,269.7,18,269.6,18z"/>
+	<path class="elementor-shape-fill" d="M227.4,9.8c-0.2-0.1-4.5-1-9.5-1.2c-5-0.2-12.7,0.6-12.3,0.5c0.3-0.1,5.9-1.8,13.3-1.2	S227.6,9.9,227.4,9.8z"/>
+	<path class="elementor-shape-fill" d="M204.5,13.4c-0.1-0.1,2-1,3.2-1.1c1.2-0.1,2,0,2,0.3c0,0.3-0.1,0.5-1.6,0.4	C206.4,12.9,204.6,13.5,204.5,13.4z"/>
+	<path class="elementor-shape-fill" d="M201,10.6c0-0.1-4.4,1.2-6.3,2.2c-1.9,0.9-6.2,3.1-6.1,3.1c0.1,0.1,4.2-1.6,6.3-2.6	S201,10.7,201,10.6z"/>
+	<path class="elementor-shape-fill" d="M154.5,26.7c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C152.6,27.5,154.6,26.8,154.5,26.7z"/>
+	<path class="elementor-shape-fill" d="M41.9,19.3c0,0,1.2-0.3,2.9-0.1c1.7,0.2,5.8,0.9,8.2,0.7c4.2-0.4,7.4-2.7,7-2.6	c-0.4,0-4.3,2.2-8.6,1.9c-1.8-0.1-5.1-0.5-6.7-0.4S41.9,19.3,41.9,19.3z"/>
+	<path class="elementor-shape-fill" d="M75.5,12.6c0.2,0.1,2-0.8,4.3-1.1c2.3-0.2,2.1-0.3,2.1-0.5c0-0.1-1.8-0.4-3.4,0	C76.9,11.5,75.3,12.5,75.5,12.6z"/>
+	<path class="elementor-shape-fill" d="M15.6,13.2c0-0.1,4.3,0,6.7,0.5c2.4,0.5,5,1.9,5,2c0,0.1-2.7-0.8-5.1-1.4	C19.9,13.7,15.7,13.3,15.6,13.2z"/>
+</svg>		</div>
+					<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-4b40e358" data-id="4b40e358" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+				<div class="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-58f9a9d0" data-id="58f9a9d0" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-77d466d7 elementor-widget elementor-widget-html" data-id="77d466d7" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+			<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1423088471841972');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1423088471841972&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->		</div>
+				</div>
+				<div class="elementor-element elementor-element-efb4c05 elementor-widget elementor-widget-image" data-id="efb4c05" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.13.3 - 28-05-2023 */
+.elementor-widget-image{text-align:center}.elementor-widget-image a{display:inline-block}.elementor-widget-image a img[src$=".svg"]{width:48px}.elementor-widget-image img{vertical-align:middle;display:inline-block}</style>												<img decoding="async" width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" class="attachment-thumbnail size-thumbnail wp-image-2334" alt="" data-lazy-srcset="https://omundodiigital.com/wp-content/uploads/2023/02/Logo-Minimalista-Circulo--150x150.webp 150w, https://omundodiigital.com/wp-content/uploads/2023/02/Logo-Minimalista-Circulo--300x300.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/02/Logo-Minimalista-Circulo-.webp 500w" data-lazy-sizes="(max-width: 150px) 100vw, 150px" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/02/Logo-Minimalista-Circulo--150x150.webp" /><noscript><img decoding="async" width="150" height="150" src="https://omundodiigital.com/wp-content/uploads/2023/02/Logo-Minimalista-Circulo--150x150.webp" class="attachment-thumbnail size-thumbnail wp-image-2334" alt="" srcset="https://omundodiigital.com/wp-content/uploads/2023/02/Logo-Minimalista-Circulo--150x150.webp 150w, https://omundodiigital.com/wp-content/uploads/2023/02/Logo-Minimalista-Circulo--300x300.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/02/Logo-Minimalista-Circulo-.webp 500w" sizes="(max-width: 150px) 100vw, 150px" /></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-43ebe63 elementor-widget elementor-widget-text-editor" data-id="43ebe63" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;">Descubra o passo a passo para ganhar <span style="color: #ffcc00;">R$ 6.000,00 por mês</span> vendendo delicioso Macarrão no Pote sem precisar sair de casa!</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-887531b elementor-widget elementor-widget-text-editor" data-id="887531b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><span style="color: #000; background-color: #ffcc00;"> Conteúdo em Vídeo Aulas</span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-0a0e504 elementor-widget elementor-widget-html" data-id="0a0e504" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+			<div id="vid_6452c41daac9bc00093d40dc" style="position:relative;width:100%;padding: 56.25% 0 0;"><img decoding="async" id="thumb_6452c41daac9bc00093d40dc" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;" data-lazy-src="https://images.converteai.net/04a47576-75f2-4177-884a-8b7a76354d0f/players/6452c41daac9bc00093d40dc/thumbnail.jpg"><noscript><img decoding="async" id="thumb_6452c41daac9bc00093d40dc" src="https://images.converteai.net/04a47576-75f2-4177-884a-8b7a76354d0f/players/6452c41daac9bc00093d40dc/thumbnail.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;"></noscript><div id="backdrop_6452c41daac9bc00093d40dc" style="position:absolute;top:0;width:100%;height:100%;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);"></div></div><script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="scr_6452c41daac9bc00093d40dc">var s=document.createElement("script");s.src="https://scripts.converteai.net/04a47576-75f2-4177-884a-8b7a76354d0f/players/6452c41daac9bc00093d40dc/player.js",s.async=!0,document.head.appendChild(s);</script>		</div>
+				</div>
+				<div class="elementor-element elementor-element-e95864f elementor-widget elementor-widget-heading" data-id="e95864f" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.13.3 - 28-05-2023 */
+.elementor-heading-title{padding:0;margin:0;line-height:1}.elementor-widget-heading .elementor-heading-title[class*=elementor-size-]>a{color:inherit;font-size:inherit;line-height:inherit}.elementor-widget-heading .elementor-heading-title.elementor-size-small{font-size:15px}.elementor-widget-heading .elementor-heading-title.elementor-size-medium{font-size:19px}.elementor-widget-heading .elementor-heading-title.elementor-size-large{font-size:29px}.elementor-widget-heading .elementor-heading-title.elementor-size-xl{font-size:39px}.elementor-widget-heading .elementor-heading-title.elementor-size-xxl{font-size:59px}</style><h2 class="elementor-heading-title elementor-size-default">Transforme seu sonho em realidade com nosso <span style="color:#FFCF3F"> passo a passo fácil </span> para criar um negócio lucrativo e <span style="color:#FFCF3F">sem precisar ter habilidades culinárias avançadas. </span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-5da47580 elementor-widget elementor-widget-text-editor" data-id="5da47580" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><span style="text-decoration: underline;"><em><strong><span class="cqiun4t2 khvhiq1o r5qsrrlp i5tg98hk iqx13udk przvwfww qiohso4h gfz4du6o r7fjleex nz2484kf svot0ezm dcnh1tix sxl192xd t3g6t33p"><span class=""><img decoding="async" class="emoji" role="img" draggable="false" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="🔥" data-lazy-src="https://s.w.org/images/core/emoji/14.0.0/svg/1f525.svg" /><noscript><img decoding="async" class="emoji" role="img" draggable="false" src="https://s.w.org/images/core/emoji/14.0.0/svg/1f525.svg" alt="🔥" /></noscript> </span></span><span style="color: #008000; text-decoration: underline;"><span style="color: #ffffff; text-decoration: underline;">Por apenas</span><span style="color: #ffffff; text-decoration: underline;"> R$ 29,90</span></span></strong></em></span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-57324ea elementor-widget elementor-widget-text-editor" data-id="57324ea" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><span style="text-decoration: underline;"><span style="color: #ff0000; text-decoration: underline;">Últimas 15 Vagas neste Valor!</span></span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-189fe01e elementor-align-center elementor-widget elementor-widget-button" data-id="189fe01e" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://checkout.perfectpay.com.br/pay/PPU38CM5Q9E?" class="elementor-button-link elementor-button elementor-size-sm elementor-animation-pulse" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">CLIQUE AQUI  PARA GARANTIR SUA VAGA COM VALOR PROMOCIONAL</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-5974bce5 elementor-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="5974bce5" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">CURSO COMPLETO DO ZERO</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">MATERIAL EM VÍDEO AULAS</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">+ DE 50 RECEITAS EXCLUSIVAS</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">4 BÔNUS EXCLUSIVOS</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">TABELA DE PREÇOS PARA VENDER</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">FORNECEDORES DE EMBALAGEM</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">MEDIDAS DAS PORÇÕES</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">CERTIFICADO DE CONCLUSÃO</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">ACESSO VITALICIO</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-20c9314d" data-id="20c9314d" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-633bdcc1 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="633bdcc1" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-31f1cb11" data-id="31f1cb11" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+				<div class="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-2eea81eb" data-id="2eea81eb" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-3fbbb035 elementor-widget elementor-widget-text-editor" data-id="3fbbb035" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="color: #ffcc00;"><b>POR QUE FAZER MACARRÃO </b></span><span style="color: #ffffff;"><b>PARA VENDER?</b></span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-61367bbc elementor-widget elementor-widget-text-editor" data-id="61367bbc" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p class="p1"><span style="color: #ffffff;">Vender o famoso <b>MACARRÃO</b> através do nosso treinamento vai te disponibilizar uma margem grande de lucro, e o melhor é que <strong>você não precisa sair da sua casa para faturar.</strong> Além do mais você não precisa de quase nada para começar. <strong>Dá para trabalhar utilizando os seus próprios utensílios, sendo necessário comprar apenas os ingredientes.</strong></span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-4d08e83 elementor-align-center elementor-widget elementor-widget-button" data-id="4d08e83" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://checkout.perfectpay.com.br/pay/PPU38CM5Q9E?" class="elementor-button-link elementor-button elementor-size-sm elementor-animation-pulse" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">CLIQUE AQUI  PARA GARANTIR SUA VAGA COM VALOR PROMOCIONAL</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-6f43e586" data-id="6f43e586" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-b93fda2 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="b93fda2" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-1202154" data-id="1202154" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+				<div class="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-9e058e6" data-id="9e058e6" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-a422ae5 elementor-widget elementor-widget-text-editor" data-id="a422ae5" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<h2 class="elementor-heading-title elementor-size-default"><span style="color: #ffffff;">Olha tudo o que você vai aprender dentro do</span> <span style="color: #ffcc00;">MACARRÃO LUCRATIVO:</span></h2>						</div>
+				</div>
+				<div class="elementor-element elementor-element-8a5c43b elementor-arrows-position-inside elementor-pagination-position-outside elementor-widget elementor-widget-image-carousel" data-id="8a5c43b" data-element_type="widget" data-settings="{&quot;slides_to_show_mobile&quot;:&quot;1&quot;,&quot;autoplay_speed&quot;:1000,&quot;image_spacing_custom&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:9,&quot;sizes&quot;:[]},&quot;navigation&quot;:&quot;both&quot;,&quot;autoplay&quot;:&quot;yes&quot;,&quot;pause_on_hover&quot;:&quot;yes&quot;,&quot;pause_on_interaction&quot;:&quot;yes&quot;,&quot;infinite&quot;:&quot;yes&quot;,&quot;speed&quot;:500,&quot;image_spacing_custom_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="image-carousel.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.13.3 - 28-05-2023 */
+.elementor-widget-image-carousel .swiper,.elementor-widget-image-carousel .swiper-container{position:static}.elementor-widget-image-carousel .swiper-container .swiper-slide figure,.elementor-widget-image-carousel .swiper .swiper-slide figure{line-height:inherit}.elementor-widget-image-carousel .swiper-slide{text-align:center}.elementor-image-carousel-wrapper:not(.swiper-container-initialized):not(.swiper-initialized) .swiper-slide{max-width:calc(100% / var(--e-image-carousel-slides-to-show, 3))}</style>		<div class="elementor-image-carousel-wrapper swiper-container" dir="ltr">
+			<div class="elementor-image-carousel swiper-wrapper">
+								<div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="modulo-03" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-03-1-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-03-1-212x300.webp" alt="modulo-03" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="introdu195167195163o" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/introdu195167195163o-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/introdu195167195163o-212x300.webp" alt="introdu195167195163o" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="modulo-01" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-01-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-01-212x300.webp" alt="modulo-01" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="modulo-02" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-02-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-02-212x300.webp" alt="modulo-02" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="modulo-03" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-03-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-03-212x300.webp" alt="modulo-03" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="modulo-04" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-04-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-04-212x300.webp" alt="modulo-04" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="modulo-05" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-05-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-05-212x300.webp" alt="modulo-05" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="modulo-06" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-06-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/modulo-06-212x300.webp" alt="modulo-06" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="1" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/1-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/1-212x300.webp" alt="1" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="2" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/2-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/2-212x300.webp" alt="2" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="3" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/3-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/3-212x300.webp" alt="3" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="212" height="300" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212%20300'%3E%3C/svg%3E" alt="4" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/4-212x300.webp" /><noscript><img width="212" height="300" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/04/4-212x300.webp" alt="4" /></noscript></figure></div>			</div>
+												<div class="swiper-pagination"></div>
+													<div class="elementor-swiper-button elementor-swiper-button-prev" role="button" tabindex="0">
+						<i aria-hidden="true" class="eicon-chevron-left"></i>						<span class="elementor-screen-only">Previous image</span>
+					</div>
+					<div class="elementor-swiper-button elementor-swiper-button-next" role="button" tabindex="0">
+						<i aria-hidden="true" class="eicon-chevron-right"></i>						<span class="elementor-screen-only">Next image</span>
+					</div>
+									</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-ac534f2 elementor-widget elementor-widget-text-editor" data-id="ac534f2" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="color: #ffffff;">Cada módulo e aula foram pensados para que você tenha resultado do início ao fim.</span></p><p><span style="color: #ffffff;">Video Aulas práticas, sem enrolação com estratégias e processos validados para vender todos os dias com lucro ou até mesmo para sua família e amigos.</span></p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-24b4152" data-id="24b4152" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-a11f017 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="a11f017" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_top&quot;:&quot;waves&quot;}">
+					<div class="elementor-shape elementor-shape-top" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+	<path class="elementor-shape-fill" d="M421.9,6.5c22.6-2.5,51.5,0.4,75.5,5.3c23.6,4.9,70.9,23.5,100.5,35.7c75.8,32.2,133.7,44.5,192.6,49.7
+	c23.6,2.1,48.7,3.5,103.4-2.5c54.7-6,106.2-25.6,106.2-25.6V0H0v30.3c0,0,72,32.6,158.4,30.5c39.2-0.7,92.8-6.7,134-22.4
+	c21.2-8.1,52.2-18.2,79.7-24.2C399.3,7.9,411.6,7.5,421.9,6.5z"/>
+</svg>		</div>
+					<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-6e10967" data-id="6e10967" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+				<div class="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-971da4b" data-id="971da4b" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-f8fc515 elementor-widget elementor-widget-image" data-id="f8fc515" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="800" height="566" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20566'%3E%3C/svg%3E" class="attachment-large size-large wp-image-2408" alt="" data-lazy-srcset="https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion-1024x724.webp 1024w, https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion-300x212.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion-768x543.webp 768w, https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion-1536x1086.webp 1536w, https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion.webp 2000w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion-1024x724.webp" /><noscript><img decoding="async" width="800" height="566" src="https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion-1024x724.webp" class="attachment-large size-large wp-image-2408" alt="" srcset="https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion-1024x724.webp 1024w, https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion-300x212.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion-768x543.webp 768w, https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion-1536x1086.webp 1536w, https://omundodiigital.com/wp-content/uploads/2023/02/White-Minimalist-Certificate-of-Completion.webp 2000w" sizes="(max-width: 800px) 100vw, 800px" /></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-f962f31 elementor-widget elementor-widget-text-editor" data-id="f962f31" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="color: #ffcc00;">CERTIFICADO DE CONCLUSÃO</span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-3f5874b elementor-widget elementor-widget-text-editor" data-id="3f5874b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="color: #ffffff;">Você ainda receberá o Certificado de Conclusão e poderá imprimir e expor para os seus parentes, amigos e clientes para que todos saibam do seu profissionalismo e excelência.</span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-ce82142 elementor-align-center elementor-widget elementor-widget-button" data-id="ce82142" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://checkout.perfectpay.com.br/pay/PPU38CM5Q9E?" class="elementor-button-link elementor-button elementor-size-sm elementor-animation-pulse" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">CLIQUE AQUI  PARA GARANTIR SUA VAGA COM VALOR PROMOCIONAL</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-d53f8a6" data-id="d53f8a6" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-79c69ad elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="79c69ad" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_top&quot;:&quot;waves&quot;}">
+					<div class="elementor-shape elementor-shape-top" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+	<path class="elementor-shape-fill" d="M421.9,6.5c22.6-2.5,51.5,0.4,75.5,5.3c23.6,4.9,70.9,23.5,100.5,35.7c75.8,32.2,133.7,44.5,192.6,49.7
+	c23.6,2.1,48.7,3.5,103.4-2.5c54.7-6,106.2-25.6,106.2-25.6V0H0v30.3c0,0,72,32.6,158.4,30.5c39.2-0.7,92.8-6.7,134-22.4
+	c21.2-8.1,52.2-18.2,79.7-24.2C399.3,7.9,411.6,7.5,421.9,6.5z"/>
+</svg>		</div>
+					<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-ae48d68" data-id="ae48d68" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+				<div class="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-fed55c5" data-id="fed55c5" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-23166e2 elementor-view-default elementor-widget elementor-widget-icon" data-id="23166e2" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-wrapper">
+			<div class="elementor-icon">
+			<i aria-hidden="true" class="far fa-clock"></i>			</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-36b5b2a elementor-widget elementor-widget-text-editor" data-id="36b5b2a" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><span style="color: #000000;"><strong>7 DIAS DE GARANTIA</strong></span></p><p style="text-align: center;"><span style="color: #000000;">Se você achar que o conteúdo não te agregou em nada, dentro de 7 dias poderá solicitar seu investimento de volta.</span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-a4af7c7 elementor-view-default elementor-widget elementor-widget-icon" data-id="a4af7c7" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-wrapper">
+			<div class="elementor-icon">
+			<i aria-hidden="true" class="far fa-envelope"></i>			</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-d01f819 elementor-widget elementor-widget-text-editor" data-id="d01f819" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-3114278c elementor-widget elementor-widget-text-editor" data-id="3114278c" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: center;"><span style="color: #000000;"><strong>ACESSO IMEDIATO</strong></span></p></div></div><div class="elementor-element elementor-element-322b55b5 elementor-widget elementor-widget-text-editor" data-id="322b55b5" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: center;"><span style="color: #000000;">Após a compra, você receberá o seu acesso diretamente no email de compra</span></p></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-63c788c elementor-view-default elementor-widget elementor-widget-icon" data-id="63c788c" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-wrapper">
+			<div class="elementor-icon">
+			<i aria-hidden="true" class="far fa-credit-card"></i>			</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-e873f71 elementor-widget elementor-widget-text-editor" data-id="e873f71" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-3868b639 elementor-widget elementor-widget-text-editor" data-id="3868b639" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: center;"><span style="color: #000000;"><strong>PAGAMENTO SEGURO</strong></span></p></div></div><div class="elementor-element elementor-element-5882a5d7 elementor-widget elementor-widget-text-editor" data-id="5882a5d7" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: center;"><span style="color: #000000;">Fique tranquilo. Todos os seus dados de pagamento estão seguros, pois usamos uma das maiores plataformas do Brasil para processar os pagamentos</span></p></div></div>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-090c8f2" data-id="090c8f2" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-1aa9968 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1aa9968" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_top&quot;:&quot;waves&quot;}">
+							<div class="elementor-background-overlay"></div>
+						<div class="elementor-shape elementor-shape-top" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+	<path class="elementor-shape-fill" d="M421.9,6.5c22.6-2.5,51.5,0.4,75.5,5.3c23.6,4.9,70.9,23.5,100.5,35.7c75.8,32.2,133.7,44.5,192.6,49.7
+	c23.6,2.1,48.7,3.5,103.4-2.5c54.7-6,106.2-25.6,106.2-25.6V0H0v30.3c0,0,72,32.6,158.4,30.5c39.2-0.7,92.8-6.7,134-22.4
+	c21.2-8.1,52.2-18.2,79.7-24.2C399.3,7.9,411.6,7.5,421.9,6.5z"/>
+</svg>		</div>
+					<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-65071ad" data-id="65071ad" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+				<div class="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-77ec181" data-id="77ec181" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-ba6141a elementor-widget elementor-widget-text-editor" data-id="ba6141a" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><span style="color: #000000;">SE VOCÊ ESTA <span style="color: #ffcc00;"><b>PROCURANDO…</b></span></span></p><p><span style="color: #000000;"><b>✅Lucro de 100% a 200% garantido</b></span></p><p><span style="color: #000000;"><b>✅Receitas extremamente lucrativas</b></span></p><p><span style="color: #000000;"><b>✅Ingredientes baratos e fáceis de encontrar</b><b></b></span></p><p><span style="color: #000000;"><b>✅Investimento baixíssimo</b><b></b></span></p><p><span style="color: #000000;"><b>✅Pode ser feito em casa</b><b></b></span></p><p><span style="color: #000000;"><b>✅Não precisa de conhecimento culinário avançado</b><b></b></span></p><p><span style="color: #000000;"><b>✅Poder vender ou fazer para consumo próprio</b></span></p><p> </p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-82bf3ae elementor-widget elementor-widget-text-editor" data-id="82bf3ae" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><span style="color: #000000;"><b>COMECE AGORA MESMO</b>, COM INVESTIMENTO BAIXO, UM PEQUENO ESPAÇO DENTRO DA SUA PRÓPRIA E COMEÇANDO <b>DO ZERO ABSOLUTO</b>!</span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-55057fb elementor-widget elementor-widget-text-editor" data-id="55057fb" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<center><span style="color: #000000;">Adquira agora mesmo o seu treinamento com</span></center><center><span style="color: #000000;"><strong>R$ 100,00 de DESCONTO!</strong></span></center>						</div>
+				</div>
+				<div class="elementor-element elementor-element-ba22e6c elementor-align-center elementor-widget elementor-widget-button" data-id="ba22e6c" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://checkout.perfectpay.com.br/pay/PPU38CM5Q9E?" class="elementor-button-link elementor-button elementor-size-sm elementor-animation-pulse" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">CLIQUE AQUI  PARA GARANTIR SUA VAGA COM VALOR PROMOCIONAL</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-33e8076" data-id="33e8076" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-2c1ddc8c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2c1ddc8c" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_top&quot;:&quot;wave-brush&quot;}">
+					<div class="elementor-shape elementor-shape-top" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
+	<path class="elementor-shape-fill" d="M283.5,9.7c0,0-7.3,4.3-14,4.6c-6.8,0.3-12.6,0-20.9-1.5c-11.3-2-33.1-10.1-44.7-5.7	s-12.1,4.6-18,7.4c-6.6,3.2-20,9.6-36.6,9.3C131.6,23.5,99.5,7.2,86.3,8c-1.4,0.1-6.6,0.8-10.5,2c-3.8,1.2-9.4,3.8-17,4.7	c-3.2,0.4-8.3,1.1-14.2,0.9c-1.5-0.1-6.3-0.4-12-1.6c-5.7-1.2-11-3.1-15.8-3.7C6.5,9.2,0,10.8,0,10.8V0h283.5V9.7z M260.8,11.3	c-0.7-1-2-0.4-4.3-0.4c-2.3,0-6.1-1.2-5.8-1.1c0.3,0.1,3.1,1.5,6,1.9C259.7,12.2,261.4,12.3,260.8,11.3z M242.4,8.6	c0,0-2.4-0.2-5.6-0.9c-3.2-0.8-10.3-2.8-15.1-3.5c-8.2-1.1-15.8,0-15.1,0.1c0.8,0.1,9.6-0.6,17.6,1.1c3.3,0.7,9.3,2.2,12.4,2.7	C239.9,8.7,242.4,8.6,242.4,8.6z M185.2,8.5c1.7-0.7-13.3,4.7-18.5,6.1c-2.1,0.6-6.2,1.6-10,2c-3.9,0.4-8.9,0.4-8.8,0.5	c0,0.2,5.8,0.8,11.2,0c5.4-0.8,5.2-1.1,7.6-1.6C170.5,14.7,183.5,9.2,185.2,8.5z M199.1,6.9c0.2,0-0.8-0.4-4.8,1.1	c-4,1.5-6.7,3.5-6.9,3.7c-0.2,0.1,3.5-1.8,6.6-3C197,7.5,199,6.9,199.1,6.9z M283,6c-0.1,0.1-1.9,1.1-4.8,2.5s-6.9,2.8-6.7,2.7	c0.2,0,3.5-0.6,7.4-2.5C282.8,6.8,283.1,5.9,283,6z M31.3,11.6c0.1-0.2-1.9-0.2-4.5-1.2s-5.4-1.6-7.8-2C15,7.6,7.3,8.5,7.7,8.6	C8,8.7,15.9,8.3,20.2,9.3c2.2,0.5,2.4,0.5,5.7,1.6S31.2,11.9,31.3,11.6z M73,9.2c0.4-0.1,3.5-1.6,8.4-2.6c4.9-1.1,8.9-0.5,8.9-0.8	c0-0.3-1-0.9-6.2-0.3S72.6,9.3,73,9.2z M71.6,6.7C71.8,6.8,75,5.4,77.3,5c2.3-0.3,1.9-0.5,1.9-0.6c0-0.1-1.1-0.2-2.7,0.2	C74.8,5.1,71.4,6.6,71.6,6.7z M93.6,4.4c0.1,0.2,3.5,0.8,5.6,1.8c2.1,1,1.8,0.6,1.9,0.5c0.1-0.1-0.8-0.8-2.4-1.3	C97.1,4.8,93.5,4.2,93.6,4.4z M65.4,11.1c-0.1,0.3,0.3,0.5,1.9-0.2s2.6-1.3,2.2-1.2s-0.9,0.4-2.5,0.8C65.3,10.9,65.5,10.8,65.4,11.1	z M34.5,12.4c-0.2,0,2.1,0.8,3.3,0.9c1.2,0.1,2,0.1,2-0.2c0-0.3-0.1-0.5-1.6-0.4C36.6,12.8,34.7,12.4,34.5,12.4z M152.2,21.1	c-0.1,0.1-2.4-0.3-7.5-0.3c-5,0-13.6-2.4-17.2-3.5c-3.6-1.1,10,3.9,16.5,4.1C150.5,21.6,152.3,21,152.2,21.1z"/>
+	<path class="elementor-shape-fill" d="M269.6,18c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C267.7,18.8,269.7,18,269.6,18z"/>
+	<path class="elementor-shape-fill" d="M227.4,9.8c-0.2-0.1-4.5-1-9.5-1.2c-5-0.2-12.7,0.6-12.3,0.5c0.3-0.1,5.9-1.8,13.3-1.2	S227.6,9.9,227.4,9.8z"/>
+	<path class="elementor-shape-fill" d="M204.5,13.4c-0.1-0.1,2-1,3.2-1.1c1.2-0.1,2,0,2,0.3c0,0.3-0.1,0.5-1.6,0.4	C206.4,12.9,204.6,13.5,204.5,13.4z"/>
+	<path class="elementor-shape-fill" d="M201,10.6c0-0.1-4.4,1.2-6.3,2.2c-1.9,0.9-6.2,3.1-6.1,3.1c0.1,0.1,4.2-1.6,6.3-2.6	S201,10.7,201,10.6z"/>
+	<path class="elementor-shape-fill" d="M154.5,26.7c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C152.6,27.5,154.6,26.8,154.5,26.7z"/>
+	<path class="elementor-shape-fill" d="M41.9,19.3c0,0,1.2-0.3,2.9-0.1c1.7,0.2,5.8,0.9,8.2,0.7c4.2-0.4,7.4-2.7,7-2.6	c-0.4,0-4.3,2.2-8.6,1.9c-1.8-0.1-5.1-0.5-6.7-0.4S41.9,19.3,41.9,19.3z"/>
+	<path class="elementor-shape-fill" d="M75.5,12.6c0.2,0.1,2-0.8,4.3-1.1c2.3-0.2,2.1-0.3,2.1-0.5c0-0.1-1.8-0.4-3.4,0	C76.9,11.5,75.3,12.5,75.5,12.6z"/>
+	<path class="elementor-shape-fill" d="M15.6,13.2c0-0.1,4.3,0,6.7,0.5c2.4,0.5,5,1.9,5,2c0,0.1-2.7-0.8-5.1-1.4	C19.9,13.7,15.7,13.3,15.6,13.2z"/>
+</svg>		</div>
+					<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-7b597dad" data-id="7b597dad" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+				<div class="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-2d212823" data-id="2d212823" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-5ff5bc23 elementor-widget elementor-widget-text-editor" data-id="5ff5bc23" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><b>RESULTADOS DOS ALUNOS</b> QUE SÃO IMPOSSÍVEIS DE IGNORAR</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-ab7226d elementor-arrows-position-inside elementor-pagination-position-outside elementor-widget elementor-widget-image-carousel" data-id="ab7226d" data-element_type="widget" data-settings="{&quot;autoplay_speed&quot;:2000,&quot;slides_to_show_mobile&quot;:&quot;1&quot;,&quot;navigation&quot;:&quot;both&quot;,&quot;autoplay&quot;:&quot;yes&quot;,&quot;pause_on_hover&quot;:&quot;yes&quot;,&quot;pause_on_interaction&quot;:&quot;yes&quot;,&quot;infinite&quot;:&quot;yes&quot;,&quot;speed&quot;:500}" data-widget_type="image-carousel.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-image-carousel-wrapper swiper-container" dir="ltr">
+			<div class="elementor-image-carousel swiper-wrapper">
+								<div class="swiper-slide"><figure class="swiper-slide-inner"><img width="593" height="1024" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20593%201024'%3E%3C/svg%3E" alt="depo2" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/02/depo2-593x1024.webp" /><noscript><img width="593" height="1024" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/02/depo2-593x1024.webp" alt="depo2" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="593" height="1024" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20593%201024'%3E%3C/svg%3E" alt="depo1" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/02/depo1-593x1024.webp" /><noscript><img width="593" height="1024" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/02/depo1-593x1024.webp" alt="depo1" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="593" height="1024" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20593%201024'%3E%3C/svg%3E" alt="depo4" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/02/depo4-593x1024.webp" /><noscript><img width="593" height="1024" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/02/depo4-593x1024.webp" alt="depo4" /></noscript></figure></div><div class="swiper-slide"><figure class="swiper-slide-inner"><img width="593" height="1024" decoding="async" class="swiper-slide-image" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20593%201024'%3E%3C/svg%3E" alt="depo3" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/02/depo3-593x1024.webp" /><noscript><img width="593" height="1024" decoding="async" class="swiper-slide-image" src="https://omundodiigital.com/wp-content/uploads/2023/02/depo3-593x1024.webp" alt="depo3" /></noscript></figure></div>			</div>
+												<div class="swiper-pagination"></div>
+													<div class="elementor-swiper-button elementor-swiper-button-prev" role="button" tabindex="0">
+						<i aria-hidden="true" class="eicon-chevron-left"></i>						<span class="elementor-screen-only">Previous image</span>
+					</div>
+					<div class="elementor-swiper-button elementor-swiper-button-next" role="button" tabindex="0">
+						<i aria-hidden="true" class="eicon-chevron-right"></i>						<span class="elementor-screen-only">Next image</span>
+					</div>
+									</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-b471fe9 elementor-align-center elementor-widget elementor-widget-button" data-id="b471fe9" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://checkout.perfectpay.com.br/pay/PPU38CM5Q9E?" class="elementor-button-link elementor-button elementor-size-sm elementor-animation-pulse" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">CLIQUE AQUI  PARA GARANTIR SUA VAGA COM VALOR PROMOCIONAL</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-2e360f6b" data-id="2e360f6b" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-281a8ff elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="281a8ff" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_top&quot;:&quot;wave-brush&quot;}">
+					<div class="elementor-shape elementor-shape-top" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
+	<path class="elementor-shape-fill" d="M283.5,9.7c0,0-7.3,4.3-14,4.6c-6.8,0.3-12.6,0-20.9-1.5c-11.3-2-33.1-10.1-44.7-5.7	s-12.1,4.6-18,7.4c-6.6,3.2-20,9.6-36.6,9.3C131.6,23.5,99.5,7.2,86.3,8c-1.4,0.1-6.6,0.8-10.5,2c-3.8,1.2-9.4,3.8-17,4.7	c-3.2,0.4-8.3,1.1-14.2,0.9c-1.5-0.1-6.3-0.4-12-1.6c-5.7-1.2-11-3.1-15.8-3.7C6.5,9.2,0,10.8,0,10.8V0h283.5V9.7z M260.8,11.3	c-0.7-1-2-0.4-4.3-0.4c-2.3,0-6.1-1.2-5.8-1.1c0.3,0.1,3.1,1.5,6,1.9C259.7,12.2,261.4,12.3,260.8,11.3z M242.4,8.6	c0,0-2.4-0.2-5.6-0.9c-3.2-0.8-10.3-2.8-15.1-3.5c-8.2-1.1-15.8,0-15.1,0.1c0.8,0.1,9.6-0.6,17.6,1.1c3.3,0.7,9.3,2.2,12.4,2.7	C239.9,8.7,242.4,8.6,242.4,8.6z M185.2,8.5c1.7-0.7-13.3,4.7-18.5,6.1c-2.1,0.6-6.2,1.6-10,2c-3.9,0.4-8.9,0.4-8.8,0.5	c0,0.2,5.8,0.8,11.2,0c5.4-0.8,5.2-1.1,7.6-1.6C170.5,14.7,183.5,9.2,185.2,8.5z M199.1,6.9c0.2,0-0.8-0.4-4.8,1.1	c-4,1.5-6.7,3.5-6.9,3.7c-0.2,0.1,3.5-1.8,6.6-3C197,7.5,199,6.9,199.1,6.9z M283,6c-0.1,0.1-1.9,1.1-4.8,2.5s-6.9,2.8-6.7,2.7	c0.2,0,3.5-0.6,7.4-2.5C282.8,6.8,283.1,5.9,283,6z M31.3,11.6c0.1-0.2-1.9-0.2-4.5-1.2s-5.4-1.6-7.8-2C15,7.6,7.3,8.5,7.7,8.6	C8,8.7,15.9,8.3,20.2,9.3c2.2,0.5,2.4,0.5,5.7,1.6S31.2,11.9,31.3,11.6z M73,9.2c0.4-0.1,3.5-1.6,8.4-2.6c4.9-1.1,8.9-0.5,8.9-0.8	c0-0.3-1-0.9-6.2-0.3S72.6,9.3,73,9.2z M71.6,6.7C71.8,6.8,75,5.4,77.3,5c2.3-0.3,1.9-0.5,1.9-0.6c0-0.1-1.1-0.2-2.7,0.2	C74.8,5.1,71.4,6.6,71.6,6.7z M93.6,4.4c0.1,0.2,3.5,0.8,5.6,1.8c2.1,1,1.8,0.6,1.9,0.5c0.1-0.1-0.8-0.8-2.4-1.3	C97.1,4.8,93.5,4.2,93.6,4.4z M65.4,11.1c-0.1,0.3,0.3,0.5,1.9-0.2s2.6-1.3,2.2-1.2s-0.9,0.4-2.5,0.8C65.3,10.9,65.5,10.8,65.4,11.1	z M34.5,12.4c-0.2,0,2.1,0.8,3.3,0.9c1.2,0.1,2,0.1,2-0.2c0-0.3-0.1-0.5-1.6-0.4C36.6,12.8,34.7,12.4,34.5,12.4z M152.2,21.1	c-0.1,0.1-2.4-0.3-7.5-0.3c-5,0-13.6-2.4-17.2-3.5c-3.6-1.1,10,3.9,16.5,4.1C150.5,21.6,152.3,21,152.2,21.1z"/>
+	<path class="elementor-shape-fill" d="M269.6,18c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C267.7,18.8,269.7,18,269.6,18z"/>
+	<path class="elementor-shape-fill" d="M227.4,9.8c-0.2-0.1-4.5-1-9.5-1.2c-5-0.2-12.7,0.6-12.3,0.5c0.3-0.1,5.9-1.8,13.3-1.2	S227.6,9.9,227.4,9.8z"/>
+	<path class="elementor-shape-fill" d="M204.5,13.4c-0.1-0.1,2-1,3.2-1.1c1.2-0.1,2,0,2,0.3c0,0.3-0.1,0.5-1.6,0.4	C206.4,12.9,204.6,13.5,204.5,13.4z"/>
+	<path class="elementor-shape-fill" d="M201,10.6c0-0.1-4.4,1.2-6.3,2.2c-1.9,0.9-6.2,3.1-6.1,3.1c0.1,0.1,4.2-1.6,6.3-2.6	S201,10.7,201,10.6z"/>
+	<path class="elementor-shape-fill" d="M154.5,26.7c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C152.6,27.5,154.6,26.8,154.5,26.7z"/>
+	<path class="elementor-shape-fill" d="M41.9,19.3c0,0,1.2-0.3,2.9-0.1c1.7,0.2,5.8,0.9,8.2,0.7c4.2-0.4,7.4-2.7,7-2.6	c-0.4,0-4.3,2.2-8.6,1.9c-1.8-0.1-5.1-0.5-6.7-0.4S41.9,19.3,41.9,19.3z"/>
+	<path class="elementor-shape-fill" d="M75.5,12.6c0.2,0.1,2-0.8,4.3-1.1c2.3-0.2,2.1-0.3,2.1-0.5c0-0.1-1.8-0.4-3.4,0	C76.9,11.5,75.3,12.5,75.5,12.6z"/>
+	<path class="elementor-shape-fill" d="M15.6,13.2c0-0.1,4.3,0,6.7,0.5c2.4,0.5,5,1.9,5,2c0,0.1-2.7-0.8-5.1-1.4	C19.9,13.7,15.7,13.3,15.6,13.2z"/>
+</svg>		</div>
+					<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-c1f8b46" data-id="c1f8b46" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+				<div class="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-41b28b5" data-id="41b28b5" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-d85910b elementor-widget elementor-widget-text-editor" data-id="d85910b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><strong>PARA QUEM É O MACARRÃO GOURMET ?</strong></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-629682e elementor-view-default elementor-widget elementor-widget-icon" data-id="629682e" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-wrapper">
+			<div class="elementor-icon">
+			<i aria-hidden="true" class="far fa-check-circle"></i>			</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-dd53eb2 elementor-widget elementor-widget-text-editor" data-id="dd53eb2" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-29f6b19d elementor-widget elementor-widget-heading" data-id="29f6b19d" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default" style="text-align: center;"><span style="color: #ffffff;">Está precisando de uma renda extra ou está desempregado(a)</span></h2></div></div><div class="elementor-element elementor-element-3d0db49a elementor-widget elementor-widget-text-editor" data-id="3d0db49a" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: center;">Quer utilizar o tempo livre ou até mesmo cansada(o) de procurar empregos que pagam pouco.</p></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-feb7bfc elementor-view-default elementor-widget elementor-widget-icon" data-id="feb7bfc" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-wrapper">
+			<div class="elementor-icon">
+			<i aria-hidden="true" class="far fa-money-bill-alt"></i>			</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-af03649 elementor-widget elementor-widget-text-editor" data-id="af03649" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-29f6b19d elementor-widget elementor-widget-heading" data-id="29f6b19d" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-129f9f08 elementor-widget elementor-widget-heading" data-id="129f9f08" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default" style="text-align: center;"><span style="color: #ffffff;">Para quem quer começar do zero a ter seu próprio negócio</span></h2></div></div><div class="elementor-element elementor-element-32a4d8a7 elementor-widget elementor-widget-text-editor" data-id="32a4d8a7" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: center;">Mesmo sem saber absolutamente nada de macarrão. Você aprende como começar do ZERO até o momento de embalar e vender.</p></div></div></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-321d087 elementor-view-default elementor-widget elementor-widget-icon" data-id="321d087" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-wrapper">
+			<div class="elementor-icon">
+			<i aria-hidden="true" class="fas fa-laptop-house"></i>			</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-9a5db31 elementor-widget elementor-widget-text-editor" data-id="9a5db31" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-29f6b19d elementor-widget elementor-widget-heading" data-id="29f6b19d" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-129f9f08 elementor-widget elementor-widget-heading" data-id="129f9f08" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-30a278d8 elementor-widget elementor-widget-heading" data-id="30a278d8" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default" style="text-align: center;"><span style="color: #ffffff;">Quer trabalhar em casa e/ou ter mais tempo para a família</span></h2></div></div><div class="elementor-element elementor-element-35990640 elementor-widget elementor-widget-text-editor" data-id="35990640" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: center;">Procura ter mais tempo com as pessoas que realmente importam na sua vida  mas ainda quer faturar? então achou o curso certo.</p></div></div></div></div></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-6506515 elementor-view-default elementor-widget elementor-widget-icon" data-id="6506515" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-wrapper">
+			<div class="elementor-icon">
+			<i aria-hidden="true" class="far fa-times-circle"></i>			</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-9d2cfbd elementor-widget elementor-widget-text-editor" data-id="9d2cfbd" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-29f6b19d elementor-widget elementor-widget-heading" data-id="29f6b19d" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-129f9f08 elementor-widget elementor-widget-heading" data-id="129f9f08" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-30a278d8 elementor-widget elementor-widget-heading" data-id="30a278d8" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-2b0ca1ad elementor-widget elementor-widget-heading" data-id="2b0ca1ad" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default" style="text-align: center;"><span style="color: #ffffff;">Tem muitas contas para pagar</span></h2></div></div><div class="elementor-element elementor-element-7a17df1f elementor-widget elementor-widget-text-editor" data-id="7a17df1f" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: center;">Passou por aquele momento em que seus boletos só aumentam e não consegue ver uma forma de sair desse buraco ? com o macarrão você pode trabalhar no conforto da sua casa e ainda ter uma renda extra.</p></div></div></div></div></div></div></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-2a590e9 elementor-view-default elementor-widget elementor-widget-icon" data-id="2a590e9" data-element_type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-wrapper">
+			<div class="elementor-icon">
+			<i aria-hidden="true" class="far fa-tired"></i>			</div>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-e7cb9d5 elementor-widget elementor-widget-text-editor" data-id="e7cb9d5" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-29f6b19d elementor-widget elementor-widget-heading" data-id="29f6b19d" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-129f9f08 elementor-widget elementor-widget-heading" data-id="129f9f08" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-30a278d8 elementor-widget elementor-widget-heading" data-id="30a278d8" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-2b0ca1ad elementor-widget elementor-widget-heading" data-id="2b0ca1ad" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-f3be494 elementor-widget elementor-widget-heading" data-id="f3be494" data-element_type="widget" data-widget_type="heading.default"><div class="elementor-widget-container"><h2 class="elementor-heading-title elementor-size-default" style="text-align: center;"><span style="color: #ffffff;">Já tentou vender de tudo e mesmo assim não deu certo</span></h2></div></div><div class="elementor-element elementor-element-2304a481 elementor-widget elementor-widget-text-editor" data-id="2304a481" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: center;">Já tentou vender de tudo e ainda não encontrou a área que vai te dar um conforto melhor ou até mesmo um significado na sua vida? </p></div></div></div></div></div></div></div></div></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-a81e038 elementor-align-center elementor-widget elementor-widget-button" data-id="a81e038" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://checkout.perfectpay.com.br/pay/PPU38CM5Q9E?" class="elementor-button-link elementor-button elementor-size-sm elementor-animation-pulse" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">CLIQUE AQUI  PARA GARANTIR SUA VAGA COM VALOR PROMOCIONAL</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-c4ce09b" data-id="c4ce09b" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-8bba655 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="8bba655" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_bottom&quot;:&quot;mountains&quot;,&quot;shape_divider_top&quot;:&quot;waves&quot;}">
+					<div class="elementor-shape elementor-shape-top" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+	<path class="elementor-shape-fill" d="M421.9,6.5c22.6-2.5,51.5,0.4,75.5,5.3c23.6,4.9,70.9,23.5,100.5,35.7c75.8,32.2,133.7,44.5,192.6,49.7
+	c23.6,2.1,48.7,3.5,103.4-2.5c54.7-6,106.2-25.6,106.2-25.6V0H0v30.3c0,0,72,32.6,158.4,30.5c39.2-0.7,92.8-6.7,134-22.4
+	c21.2-8.1,52.2-18.2,79.7-24.2C399.3,7.9,411.6,7.5,421.9,6.5z"/>
+</svg>		</div>
+				<div class="elementor-shape elementor-shape-bottom" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+	<path class="elementor-shape-fill" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"/>
+	<path class="elementor-shape-fill" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"/>
+	<path class="elementor-shape-fill" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"/>
+</svg>		</div>
+					<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-ab0f972" data-id="ab0f972" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+				<div class="elementor-column elementor-col-66 elementor-top-column elementor-element elementor-element-402dd4c" data-id="402dd4c" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-307ccdb elementor-widget elementor-widget-text-editor" data-id="307ccdb" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><strong><span style="color: #000000;">CALMA AI! EU AINDA VOU TE DAR</span><span style="color: #ffcc00;"><span style="color: #000000;"> </span>4 BÔNUS EXCLUSIVOS!</span></strong></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-584a555 elementor-widget elementor-widget-image" data-id="584a555" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="800" height="670" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20670'%3E%3C/svg%3E" class="attachment-large size-large wp-image-2833" alt="" data-lazy-srcset="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-1024x858.webp 1024w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-300x251.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-768x644.webp 768w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-1536x1288.webp 1536w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-2048x1717.webp 2048w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-1024x858.webp" /><noscript><img decoding="async" width="800" height="670" src="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-1024x858.webp" class="attachment-large size-large wp-image-2833" alt="" srcset="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-1024x858.webp 1024w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-300x251.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-768x644.webp 768w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-1536x1288.webp 1536w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1-2048x1717.webp 2048w" sizes="(max-width: 800px) 100vw, 800px" /></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-404513c elementor-widget elementor-widget-text-editor" data-id="404513c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-66866735 elementor-widget elementor-widget-text-editor" data-id="66866735" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p style="text-align: left;"><span style="color: #000000;"><strong>1# COMO FAZER OS MELHORES E MAIS FACEIS MOLHOS</strong></span><br /><span style="color: #000000;">De <span style="color: #ff0000;"><del><strong>R$ 97,00</strong></del></span> por <span style="color: #008000;"><strong>R$ 0,00</strong></span></span></p></div></div><div class="elementor-element elementor-element-32f6b3f2 elementor-widget elementor-widget-text-editor" data-id="32f6b3f2" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p><span style="color: #000000;">Vou te ensinar receitas com os molhos mais vendidos e exclusivos para você lucrar ainda mais no seu négocio.</span></p></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-b45cee1 elementor-widget elementor-widget-image" data-id="b45cee1" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="800" height="670" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20670'%3E%3C/svg%3E" class="attachment-large size-large wp-image-2834" alt="" data-lazy-srcset="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-1024x858.webp 1024w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-300x251.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-768x644.webp 768w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-1536x1288.webp 1536w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-2048x1717.webp 2048w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-1024x858.webp" /><noscript><img decoding="async" width="800" height="670" src="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-1024x858.webp" class="attachment-large size-large wp-image-2834" alt="" srcset="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-1024x858.webp 1024w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-300x251.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-768x644.webp 768w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-1536x1288.webp 1536w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2-2048x1717.webp 2048w" sizes="(max-width: 800px) 100vw, 800px" /></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-41d4e63 elementor-widget elementor-widget-text-editor" data-id="41d4e63" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-66866735 elementor-widget elementor-widget-text-editor" data-id="66866735" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-592ffc6c elementor-widget elementor-widget-text-editor" data-id="592ffc6c" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p><span style="color: #000000;"><strong>2# SOBREMESAS LUCRATIVAS</strong></span><br /><span style="color: #000000;">De <span style="color: #ff0000;"><del><strong>R$ 147,00</strong></del></span> por <span style="color: #008000;"><strong>R$ 0,00</strong></span></span></p></div></div><div class="elementor-element elementor-element-fb7ddfa elementor-widget elementor-widget-text-editor" data-id="fb7ddfa" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p><span style="color: #000000;">Vou te ensinar mais de 50 receitas de sobremesa pra você lucrar mais no seu delivery!</span></p></div></div></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-761d400 elementor-widget elementor-widget-image" data-id="761d400" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="800" height="670" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20670'%3E%3C/svg%3E" class="attachment-large size-large wp-image-2835" alt="" data-lazy-srcset="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1024x858.webp 1024w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-300x251.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-768x644.webp 768w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1536x1288.webp 1536w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2048x1717.webp 2048w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1024x858.webp" /><noscript><img decoding="async" width="800" height="670" src="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1024x858.webp" class="attachment-large size-large wp-image-2835" alt="" srcset="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1024x858.webp 1024w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-300x251.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-768x644.webp 768w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-1536x1288.webp 1536w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-2048x1717.webp 2048w" sizes="(max-width: 800px) 100vw, 800px" /></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-c0b4689 elementor-widget elementor-widget-text-editor" data-id="c0b4689" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-66866735 elementor-widget elementor-widget-text-editor" data-id="66866735" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-592ffc6c elementor-widget elementor-widget-text-editor" data-id="592ffc6c" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-7bd3be8e elementor-widget elementor-widget-text-editor" data-id="7bd3be8e" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p><span style="color: #000000;"><strong>3# COMO MONTAR SEU DELIVERY DO ZERO ABSOLUTO</strong></span><br /><span style="color: #000000;">De <span style="color: #ff0000;"><del><strong>R$ 57,00</strong></del> </span>por <span style="color: #008000;"><strong>R$ 0,00</strong></span></span></p></div></div><div class="elementor-element elementor-element-27dd635a elementor-widget elementor-widget-text-editor" data-id="27dd635a" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p><span style="color: #000000;">Nesse módulo vou te ensinar a começar do zero e montar um delivery de sucesso.</span></p></div></div></div></div></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-984216f elementor-widget elementor-widget-image" data-id="984216f" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="800" height="670" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20670'%3E%3C/svg%3E" class="attachment-large size-large wp-image-2836" alt="" data-lazy-srcset="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-1024x858.webp 1024w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-300x251.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-768x644.webp 768w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-1536x1288.webp 1536w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-2048x1717.webp 2048w" data-lazy-sizes="(max-width: 800px) 100vw, 800px" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-1024x858.webp" /><noscript><img decoding="async" width="800" height="670" src="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-1024x858.webp" class="attachment-large size-large wp-image-2836" alt="" srcset="https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-1024x858.webp 1024w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-300x251.webp 300w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-768x644.webp 768w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-1536x1288.webp 1536w, https://omundodiigital.com/wp-content/uploads/2023/04/meuebookresetei-3-2048x1717.webp 2048w" sizes="(max-width: 800px) 100vw, 800px" /></noscript>															</div>
+				</div>
+				<div class="elementor-element elementor-element-70f5501 elementor-widget elementor-widget-text-editor" data-id="70f5501" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-element elementor-element-66866735 elementor-widget elementor-widget-text-editor" data-id="66866735" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-592ffc6c elementor-widget elementor-widget-text-editor" data-id="592ffc6c" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-7bd3be8e elementor-widget elementor-widget-text-editor" data-id="7bd3be8e" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><div class="elementor-element elementor-element-191246c0 elementor-widget elementor-widget-text-editor" data-id="191246c0" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p><span style="color: #000000;"><strong>4# RECEITAS DE PIZZA GOURMET </strong></span><br /><span style="color: #000000;">De <span style="color: #ff0000;"><del><strong>R$ 197,00</strong></del></span> por <span style="color: #008000;"><strong>R$ 0,00</strong></span></span></p></div></div><div class="elementor-element elementor-element-1d19444f elementor-widget elementor-widget-text-editor" data-id="1d19444f" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><p><span style="color: #000000;">Nesse bônus vou disponibilizar algumas receitas de pizza gourmet para você acrescentar no seu cardápio caso queira!</span></p></div></div></div></div></div></div></div></div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-d36c666 elementor-widget elementor-widget-text-editor" data-id="d36c666" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><span style="color: #000000;">Agora pensa: <b>Quanto vale pra ter acesso a TUDO ISSO?</b></span></p><p style="text-align: center;"><span style="color: #000000;"><b> </b><strong><span style="color: #ff0000;"><span style="color: #000000;">Somente esses Bônus valeria muito facilmente</span> R$ 47,00 <span style="color: #000000;">e você vai receber eles de</span> <span style="color: #339966;">GRAÇA!!!</span></span></strong></span></p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-6385949" data-id="6385949" data-element_type="column">
+			<div class="elementor-widget-wrap">
+									</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-46efbe46 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="46efbe46" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1c482ca7" data-id="1c482ca7" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-2ac0cc3 elementor-widget elementor-widget-text-editor" data-id="2ac0cc3" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-26420301" data-id="26420301" data-element_type="column"><div class="elementor-widget-wrap elementor-element-populated"><div id="planos" class="elementor-element elementor-element-2c9e2e13 elementor-widget elementor-widget-text-editor" data-id="2c9e2e13" data-element_type="widget" data-widget_type="text-editor.default"><div class="elementor-widget-container"><h2 style="text-align: center;"><span style="color: #ff0000;">ÚLTIMAS 10 VAGAS DISPONÍVEIS!</span></h2></div></div></div></div><div class="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-2dcc09b" data-id="2dcc09b" data-element_type="column"> </div>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-5f1b8c4a elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5f1b8c4a" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-740e00ba" data-id="740e00ba" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-aff37f4 elementor-align-center elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list" data-id="aff37f4" data-element_type="widget" data-widget_type="icon-list.default">
+				<div class="elementor-widget-container">
+					<ul class="elementor-icon-list-items">
+							<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">CURSO COMPLETO MACARRÃO LUCRATIVO</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">SUPORTE 24/7</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">MAIS DE 50 RECEITAS EXCLUSIVAS</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Bônus 1: COMO FAZER OS MELHORES MOLHOS</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Bônus 2: SOBREMESAS LUCRATIVAS</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Bônus 3: COMO MONTAR SEU DELIVERY DO ZERO ABSOLUTO</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">Bônus 4: RECEITAS DE PIZZA GOURMET</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">CERTIFICADO DE CONCLUSÃO E QUALIFICAÇÃO</span>
+									</li>
+								<li class="elementor-icon-list-item">
+											<span class="elementor-icon-list-icon">
+							<i aria-hidden="true" class="fas fa-check-circle"></i>						</span>
+										<span class="elementor-icon-list-text">ATUALIZAÇÃO CONSTANTE E ACESSO VITALÍCIO</span>
+									</li>
+						</ul>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-23a13c3 elementor-widget elementor-widget-heading" data-id="23a13c3" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">70% DE DESCONTO</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-cdfea4b elementor-widget elementor-widget-text-editor" data-id="cdfea4b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><span style="color: #000000;"><strong>DE <span style="color: #ff0000;"><del>R$ 97,00</del></span></strong></span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-2422681 elementor-widget elementor-widget-text-editor" data-id="2422681" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><strong><span style="color: #000000;">R$ 29,90</span></strong></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-e557fe4 elementor-widget elementor-widget-text-editor" data-id="e557fe4" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p style="text-align: center;"><span style="color: #000000;"><strong>Pagamento único</strong>, sem nenhum tipo de mensalidade</span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-e49d01a elementor-align-center elementor-widget elementor-widget-button" data-id="e49d01a" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://checkout.perfectpay.com.br/pay/PPU38CM5Q9E?" class="elementor-button-link elementor-button elementor-size-sm elementor-animation-pulse" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">CLIQUE AQUI  PARA GARANTIR SUA VAGA COM VALOR PROMOCIONAL</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-457e883 elementor-widget elementor-widget-heading" data-id="457e883" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">PS: É sua liberdade de tempo e financeira por menos de 1 cafézinho por mês
+
+</h2>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-1f9fc3a2 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1f9fc3a2" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;shape_divider_top&quot;:&quot;wave-brush&quot;}">
+					<div class="elementor-shape elementor-shape-top" data-negative="false">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="none">
+	<path class="elementor-shape-fill" d="M283.5,9.7c0,0-7.3,4.3-14,4.6c-6.8,0.3-12.6,0-20.9-1.5c-11.3-2-33.1-10.1-44.7-5.7	s-12.1,4.6-18,7.4c-6.6,3.2-20,9.6-36.6,9.3C131.6,23.5,99.5,7.2,86.3,8c-1.4,0.1-6.6,0.8-10.5,2c-3.8,1.2-9.4,3.8-17,4.7	c-3.2,0.4-8.3,1.1-14.2,0.9c-1.5-0.1-6.3-0.4-12-1.6c-5.7-1.2-11-3.1-15.8-3.7C6.5,9.2,0,10.8,0,10.8V0h283.5V9.7z M260.8,11.3	c-0.7-1-2-0.4-4.3-0.4c-2.3,0-6.1-1.2-5.8-1.1c0.3,0.1,3.1,1.5,6,1.9C259.7,12.2,261.4,12.3,260.8,11.3z M242.4,8.6	c0,0-2.4-0.2-5.6-0.9c-3.2-0.8-10.3-2.8-15.1-3.5c-8.2-1.1-15.8,0-15.1,0.1c0.8,0.1,9.6-0.6,17.6,1.1c3.3,0.7,9.3,2.2,12.4,2.7	C239.9,8.7,242.4,8.6,242.4,8.6z M185.2,8.5c1.7-0.7-13.3,4.7-18.5,6.1c-2.1,0.6-6.2,1.6-10,2c-3.9,0.4-8.9,0.4-8.8,0.5	c0,0.2,5.8,0.8,11.2,0c5.4-0.8,5.2-1.1,7.6-1.6C170.5,14.7,183.5,9.2,185.2,8.5z M199.1,6.9c0.2,0-0.8-0.4-4.8,1.1	c-4,1.5-6.7,3.5-6.9,3.7c-0.2,0.1,3.5-1.8,6.6-3C197,7.5,199,6.9,199.1,6.9z M283,6c-0.1,0.1-1.9,1.1-4.8,2.5s-6.9,2.8-6.7,2.7	c0.2,0,3.5-0.6,7.4-2.5C282.8,6.8,283.1,5.9,283,6z M31.3,11.6c0.1-0.2-1.9-0.2-4.5-1.2s-5.4-1.6-7.8-2C15,7.6,7.3,8.5,7.7,8.6	C8,8.7,15.9,8.3,20.2,9.3c2.2,0.5,2.4,0.5,5.7,1.6S31.2,11.9,31.3,11.6z M73,9.2c0.4-0.1,3.5-1.6,8.4-2.6c4.9-1.1,8.9-0.5,8.9-0.8	c0-0.3-1-0.9-6.2-0.3S72.6,9.3,73,9.2z M71.6,6.7C71.8,6.8,75,5.4,77.3,5c2.3-0.3,1.9-0.5,1.9-0.6c0-0.1-1.1-0.2-2.7,0.2	C74.8,5.1,71.4,6.6,71.6,6.7z M93.6,4.4c0.1,0.2,3.5,0.8,5.6,1.8c2.1,1,1.8,0.6,1.9,0.5c0.1-0.1-0.8-0.8-2.4-1.3	C97.1,4.8,93.5,4.2,93.6,4.4z M65.4,11.1c-0.1,0.3,0.3,0.5,1.9-0.2s2.6-1.3,2.2-1.2s-0.9,0.4-2.5,0.8C65.3,10.9,65.5,10.8,65.4,11.1	z M34.5,12.4c-0.2,0,2.1,0.8,3.3,0.9c1.2,0.1,2,0.1,2-0.2c0-0.3-0.1-0.5-1.6-0.4C36.6,12.8,34.7,12.4,34.5,12.4z M152.2,21.1	c-0.1,0.1-2.4-0.3-7.5-0.3c-5,0-13.6-2.4-17.2-3.5c-3.6-1.1,10,3.9,16.5,4.1C150.5,21.6,152.3,21,152.2,21.1z"/>
+	<path class="elementor-shape-fill" d="M269.6,18c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C267.7,18.8,269.7,18,269.6,18z"/>
+	<path class="elementor-shape-fill" d="M227.4,9.8c-0.2-0.1-4.5-1-9.5-1.2c-5-0.2-12.7,0.6-12.3,0.5c0.3-0.1,5.9-1.8,13.3-1.2	S227.6,9.9,227.4,9.8z"/>
+	<path class="elementor-shape-fill" d="M204.5,13.4c-0.1-0.1,2-1,3.2-1.1c1.2-0.1,2,0,2,0.3c0,0.3-0.1,0.5-1.6,0.4	C206.4,12.9,204.6,13.5,204.5,13.4z"/>
+	<path class="elementor-shape-fill" d="M201,10.6c0-0.1-4.4,1.2-6.3,2.2c-1.9,0.9-6.2,3.1-6.1,3.1c0.1,0.1,4.2-1.6,6.3-2.6	S201,10.7,201,10.6z"/>
+	<path class="elementor-shape-fill" d="M154.5,26.7c-0.1-0.1-4.6,0.3-7.2,0c-7.3-0.7-17-3.2-16.6-2.9c0.4,0.3,13.7,3.1,17,3.3	C152.6,27.5,154.6,26.8,154.5,26.7z"/>
+	<path class="elementor-shape-fill" d="M41.9,19.3c0,0,1.2-0.3,2.9-0.1c1.7,0.2,5.8,0.9,8.2,0.7c4.2-0.4,7.4-2.7,7-2.6	c-0.4,0-4.3,2.2-8.6,1.9c-1.8-0.1-5.1-0.5-6.7-0.4S41.9,19.3,41.9,19.3z"/>
+	<path class="elementor-shape-fill" d="M75.5,12.6c0.2,0.1,2-0.8,4.3-1.1c2.3-0.2,2.1-0.3,2.1-0.5c0-0.1-1.8-0.4-3.4,0	C76.9,11.5,75.3,12.5,75.5,12.6z"/>
+	<path class="elementor-shape-fill" d="M15.6,13.2c0-0.1,4.3,0,6.7,0.5c2.4,0.5,5,1.9,5,2c0,0.1-2.7-0.8-5.1-1.4	C19.9,13.7,15.7,13.3,15.6,13.2z"/>
+</svg>		</div>
+					<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-702d4db" data-id="702d4db" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-95da248 elementor-widget elementor-widget-image" data-id="95da248" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img decoding="async" width="700" height="539" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20539'%3E%3C/svg%3E" class="attachment-large size-large wp-image-2326" alt="" data-lazy-srcset="https://omundodiigital.com/wp-content/uploads/2023/02/garantia1-1.png 700w, https://omundodiigital.com/wp-content/uploads/2023/02/garantia1-1-300x231.png 300w" data-lazy-sizes="(max-width: 700px) 100vw, 700px" data-lazy-src="https://omundodiigital.com/wp-content/uploads/2023/02/garantia1-1.png" /><noscript><img decoding="async" width="700" height="539" src="https://omundodiigital.com/wp-content/uploads/2023/02/garantia1-1.png" class="attachment-large size-large wp-image-2326" alt="" srcset="https://omundodiigital.com/wp-content/uploads/2023/02/garantia1-1.png 700w, https://omundodiigital.com/wp-content/uploads/2023/02/garantia1-1-300x231.png 300w" sizes="(max-width: 700px) 100vw, 700px" /></noscript>															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-53a60626" data-id="53a60626" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-5562358b elementor-widget elementor-widget-text-editor" data-id="5562358b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="color: #000000;">GARANTIA DE 7 DIAS</span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-600071e6 elementor-widget elementor-widget-text-editor" data-id="600071e6" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="color: #000000;">Mais um Incentivo Para Provar que o macarrão lucrativo é Para Você!</span></p><p><span style="color: #000000;">VOCÊ TEM 7 DIAS DE GARANTIA INCONDICIONAL!</span></p><p><span style="color: #000000;">Se por algum motivo você achar que o curso não é pra você, devolvo todo o seu dinheiro.</span></p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-318d0bb8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="318d0bb8" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-7743a151" data-id="7743a151" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-f785c82 elementor-widget elementor-widget-text-editor" data-id="f785c82" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="color: #000000;">PERGUNTAS FREQUENTES <b>(SÓ PARA QUEM ROLOU A PÁGINA ATÉ O FIM&#8230;)</b></span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-2d476d26 elementor-widget elementor-widget-accordion" data-id="2d476d26" data-element_type="widget" data-widget_type="accordion.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.13.3 - 28-05-2023 */
+.elementor-accordion{text-align:left}.elementor-accordion .elementor-accordion-item{border:1px solid #d5d8dc}.elementor-accordion .elementor-accordion-item+.elementor-accordion-item{border-top:none}.elementor-accordion .elementor-tab-title{margin:0;padding:15px 20px;font-weight:700;line-height:1;cursor:pointer;outline:none}.elementor-accordion .elementor-tab-title .elementor-accordion-icon{display:inline-block;width:1.5em}.elementor-accordion .elementor-tab-title .elementor-accordion-icon svg{width:1em;height:1em}.elementor-accordion .elementor-tab-title .elementor-accordion-icon.elementor-accordion-icon-right{float:right;text-align:right}.elementor-accordion .elementor-tab-title .elementor-accordion-icon.elementor-accordion-icon-left{float:left;text-align:left}.elementor-accordion .elementor-tab-title .elementor-accordion-icon .elementor-accordion-icon-closed{display:block}.elementor-accordion .elementor-tab-title .elementor-accordion-icon .elementor-accordion-icon-opened,.elementor-accordion .elementor-tab-title.elementor-active .elementor-accordion-icon-closed{display:none}.elementor-accordion .elementor-tab-title.elementor-active .elementor-accordion-icon-opened{display:block}.elementor-accordion .elementor-tab-content{display:none;padding:15px 20px;border-top:1px solid #d5d8dc}@media (max-width:767px){.elementor-accordion .elementor-tab-title{padding:12px 15px}.elementor-accordion .elementor-tab-title .elementor-accordion-icon{width:1.2em}.elementor-accordion .elementor-tab-content{padding:7px 15px}}.e-con-inner>.elementor-widget-accordion,.e-con>.elementor-widget-accordion{width:var(--container-widget-width);--flex-grow:var(--container-widget-flex-grow)}</style>		<div class="elementor-accordion" role="tablist">
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-7591" class="elementor-tab-title" data-tab="1" role="tab" aria-controls="elementor-tab-content-7591" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href="">PERAI, POR QUE TÃO BARATO?</a>
+					</div>
+					<div id="elementor-tab-content-7591" class="elementor-tab-content elementor-clearfix" data-tab="1" role="tabpanel" aria-labelledby="elementor-tab-title-7591"><p><span style="color: #000000;">Essa é uma forma de mostrar para o mercado de macarrão que é possível trabalhar de uma forma diferente, fazer mais pessoas terem a mesma oportunidade que eu estou tendo, e ainda sim criar um relacionamento de confiança com você</span></p></div>
+				</div>
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-7592" class="elementor-tab-title" data-tab="2" role="tab" aria-controls="elementor-tab-content-7592" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href="">EU REALMENTE VOU APRENDER A VENDER?</a>
+					</div>
+					<div id="elementor-tab-content-7592" class="elementor-tab-content elementor-clearfix" data-tab="2" role="tabpanel" aria-labelledby="elementor-tab-title-7592"><p><span style="color: #000000;">Eu te desafio a colocar o que eu ensino dentro desse curso em prática e não fazer vendas todos os dias. </span></p></div>
+				</div>
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-7593" class="elementor-tab-title" data-tab="3" role="tab" aria-controls="elementor-tab-content-7593" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href="">COMO EU VOU ACESSAR O CURSO?</a>
+					</div>
+					<div id="elementor-tab-content-7593" class="elementor-tab-content elementor-clearfix" data-tab="3" role="tabpanel" aria-labelledby="elementor-tab-title-7593"><p><span style="color: #000000;">O seu acesso será pela plataforma PerfectPay, após a compra você receberá diretamente em seu email.</span></p></div>
+				</div>
+							<div class="elementor-accordion-item">
+					<div id="elementor-tab-title-7594" class="elementor-tab-title" data-tab="4" role="tab" aria-controls="elementor-tab-content-7594" aria-expanded="false">
+													<span class="elementor-accordion-icon elementor-accordion-icon-left" aria-hidden="true">
+															<span class="elementor-accordion-icon-closed"><i class="fas fa-plus"></i></span>
+								<span class="elementor-accordion-icon-opened"><i class="fas fa-minus"></i></span>
+														</span>
+												<a class="elementor-accordion-title" href="">E SE EU NÃO GOSTAR?</a>
+					</div>
+					<div id="elementor-tab-content-7594" class="elementor-tab-content elementor-clearfix" data-tab="4" role="tabpanel" aria-labelledby="elementor-tab-title-7594"><p><span style="color: #000000;">Ahhh você já sabe meu querido. É só pedir o reembolso!</span></p></div>
+				</div>
+								</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-4ee3b95c elementor-widget elementor-widget-text-editor" data-id="4ee3b95c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="color: #000000;">SE VOCÊ CHEGOU ATÉ AQUI E <b>AINDA NÃO SE CONVENCEU</b> EU NÃO SEI MAIS O QUE FAZER&#8230;</span></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-b9005a0 elementor-align-center elementor-widget elementor-widget-button" data-id="b9005a0" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="https://checkout.perfectpay.com.br/pay/PPU38CM5Q9E?" class="elementor-button-link elementor-button elementor-size-lg elementor-animation-pulse" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">CLIQUE PARA SAIR DA INDECISÃO</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-5570ac51 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5570ac51" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1fa66111" data-id="1fa66111" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-39dc126 elementor-widget elementor-widget-text-editor" data-id="39dc126" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Este produto não garante a obtenção de resultados. Qualquer referência ao desempenho de uma estratégia não deve ser interpretada como uma garantia de resultados</p>
+<p>Copyright 2022 – Todos os Direitos Reservados | Política de Privacidade</p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+							</div>
+		<script type="rocketlazyloadscript">
+    let prefix = ["https://checkout.perfectpay.com.br/pay/PPU38CM5Q9E?"];
+
+function getParams() {
+    let t = "",
+        e = window.top.location.href,
+        r = new URL(e);
+    if (null != r) {
+        let a = r.searchParams.get("utm_source"),
+            n = r.searchParams.get("utm_medium"),
+            o = r.searchParams.get("utm_campaign"),
+            m = r.searchParams.get("utm_term"),
+            c = r.searchParams.get("utm_content"); - 1 !== e.indexOf("?") && (t = `&sck=${a}|${n}|${o}|${m}|${c}`), console.log(t)
+    }
+    return t
+}! function() {
+    var t = new URLSearchParams(window.location.search);
+    t.toString() && document.querySelectorAll("a").forEach(function(e) {
+        for (let r = 0; r < prefix.length; r++) - 1 !== e.href.indexOf(prefix[r]) && (-1 === e.href.indexOf("?") ? e.href += "?" + t.toString() + getParams() : e.href += "&" + t.toString() + getParams())
+    })
+}(); </script>
+
+<script type='text/javascript' id='wp_notification_alertConvert_js-js-extra'>
+/* <![CDATA[ */
+var wpAlertConvert = {"siteurl":"https:\/\/omundodiigital.com","pageOrPost":"page","currentePageID":"2306","imagesAlertConvert":"https:\/\/omundodiigital.com\/wp-content\/plugins\/wp-nodz-conversion-alerts\/assets\/images"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-content/cache/min/1/wp-content/plugins/wp-nodz-conversion-alerts/assets/js/wpNotificationAlertConvert.js?ver=1686158926' id='wp_notification_alertConvert_js-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='rocket-browser-checker-js-after'>
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script type='text/javascript' id='rocket-preload-links-js-extra'>
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/(.+\/)?feed\/?.+\/?|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/wp-login.php","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|php|pdf|html|htm","siteUrl":"https:\/\/omundodiigital.com","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='rocket-preload-links-js-after'>
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-content/themes/hello-elementor/assets/js/hello-frontend.min.js?ver=1.0.0' id='hello-theme-frontend-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=3.7.3' id='elementor-pro-webpack-runtime-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.13.4' id='elementor-webpack-runtime-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.13.4' id='elementor-frontend-modules-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-includes/js/dist/vendor/wp-polyfill-inert.min.js?ver=3.1.2' id='wp-polyfill-inert-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-includes/js/dist/vendor/regenerator-runtime.min.js?ver=0.13.11' id='regenerator-runtime-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0' id='wp-polyfill-js'></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-includes/js/dist/hooks.min.js?ver=4169d3cf8e8d95a3d6d5' id='wp-hooks-js'></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-includes/js/dist/i18n.min.js?ver=9e794f35a71bb98672ae' id='wp-i18n-js'></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='wp-i18n-js-after'>
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='elementor-pro-frontend-js-before'>
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/omundodiigital.com\/wp-admin\/admin-ajax.php","nonce":"541cb230f5","urls":{"assets":"https:\/\/omundodiigital.com\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/omundodiigital.com\/wp-json\/"},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"}},"facebook_sdk":{"lang":"pt_PT","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/omundodiigital.com\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=3.7.3' id='elementor-pro-frontend-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2' id='elementor-waypoints-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-includes/js/jquery/ui/core.min.js?ver=1.13.2' id='jquery-ui-core-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='elementor-frontend-js-before'>
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Partilhar no Facebook","shareOnTwitter":"Partilhar no Twitter","pinIt":"Fix\u00e1-lo","download":"Download","downloadImage":"Descarregar Imagem","fullscreen":"\u00c9cr\u00e3 Inteiro","zoom":"Zoom","share":"Partilhar","playVideo":"Reproduzir v\u00eddeo","previous":"Anterior","next":"Seguinte","close":"Fechar"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile ao alto","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile ao baixo","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Port\u00e1til","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.13.4","is_static":false,"experimentalFeatures":{"e_dom_optimization":true,"e_optimized_assets_loading":true,"e_optimized_css_loading":true,"a11y_improvements":true,"additional_custom_breakpoints":true,"container":true,"theme_builder_v2":true,"hello-theme-header-footer":true,"landing-pages":true,"page-transitions":true,"form-submissions":true,"e_scroll_snap":true},"urls":{"assets":"https:\/\/omundodiigital.com\/wp-content\/plugins\/elementor\/assets\/"},"swiperClass":"swiper-container","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description","hello_header_logo_type":"logo","hello_footer_logo_type":"logo"},"post":{"id":2306,"title":"macarraogourmet%20%E2%80%93%20O%20Mundo%20Digital","excerpt":"","featuredImage":false}};
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.13.4' id='elementor-frontend-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' src='https://omundodiigital.com/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=3.7.3' id='pro-elements-handlers-js' defer></script>
+<script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://omundodiigital.com/wp-content/plugins/wp-rocket/assets/js/lazyload/17.5/lazyload.min.js"></script>	<script type="rocketlazyloadscript">"use strict";var wprRemoveCPCSS=function wprRemoveCPCSS(){var elem;document.querySelector('link[data-rocket-async="style"][rel="preload"]')?setTimeout(wprRemoveCPCSS,200):(elem=document.getElementById("rocket-critical-css"))&&"remove"in elem&&elem.remove()};window.addEventListener?window.addEventListener("load",wprRemoveCPCSS):window.attachEvent&&window.attachEvent("onload",wprRemoveCPCSS);</script><script>class RocketElementorAnimation{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}_detectAnimations(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this._listAnimationSettingsKeys(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach(t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this._animateElement(t)}catch(t){}})}_animateElement(t){const e=JSON.parse(t.dataset.settings),i=e._animation_delay||e.animation_delay||0,n=e[this.animationSettingKeys.find(t=>e[t])];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let s=setTimeout(()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this._removeAnimationSettings(t,e)},i);window.addEventListener("rocket-startLoading",function(){clearTimeout(s)})}_listAnimationSettingsKeys(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach(t=>{e.forEach(e=>{i.push(t+e)})}),i}_removeAnimationSettings(t,e){this._listAnimationSettingsKeys().forEach(t=>delete e[t]),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorAnimation;requestAnimationFrame(t._detectAnimations.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorAnimation.run);</script><noscript><link rel="stylesheet" href="https://omundodiigital.com/wp-content/cache/min/1/92a56b8fafae2c017dc97af373c0acc9.css" media="all" data-minify="1" /></noscript></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1686249484 -->
